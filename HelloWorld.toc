@@ -1,0 +1,6 @@
+## Interface: 20501
+## Title: MyAddon
+## Author: ucapbba
+## Version: 1.0
+
+HelloWorld.lua
