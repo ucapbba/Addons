@@ -1,4 +1,5 @@
 Addon = { }
+  print("|cFF33FF99HelloWorld|r:", "Addon loaded")
 
 function Addon:Message()
     message("Hello World!") 
@@ -11,7 +12,7 @@ end
 
 SlashCmdList.HELLOWORLD = function()
   Addon:Message()
-  print("|cFF33FF99HelloWorld|r:", _G.UNLOCK)
+  print("|cFF33FF99HelloWorld|r:", "Message Displayed")
 end
 SLASH_HELLOWORLD1 = "/hw"
 
