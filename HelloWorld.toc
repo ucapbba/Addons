@@ -1,5 +1,5 @@
 ## Interface: 20501
-## Title: MyAddon
+## Title: HelloWorld
 ## Author: ucapbba
 ## Version: 1.0
 
