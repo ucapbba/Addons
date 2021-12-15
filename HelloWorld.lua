@@ -1,21 +1,15 @@
-Addon = { }
-  print("|cFF33FF99HelloWorld|r:", "Addon loaded")
+Main = { }
+  print("|cFF33FF99HelloWorld|r:", "Main loaded")
 
-function Addon:Message()
-    message("Hello World!") 
-
-end
-
-function Addon:DoStuff()
-
+function Main:Message()
+    message("Displaying a config square") 
 end
 
 SlashCmdList.HELLOWORLD = function()
-  Addon:Message()
+  Main:Message()
+  Config:DisplaySquare()
   print("|cFF33FF99HelloWorld|r:", "Message Displayed")
 end
 SLASH_HELLOWORLD1 = "/hw"
-
---Addon:DoStuff() 
 
 
