@@ -1,3 +1,4 @@
 # Addons
 For WoW BC
-- Hello World does what is says on the tin - displays a popup at login.  Simply deploy the .lua and .toc in you insterface/addons folder
+- Deploy Config.lua and HelloWorld.lua and HelloWorld.toc to interface/Addons/myFolder
+- use command /hw in WoW to laod configuration planel
