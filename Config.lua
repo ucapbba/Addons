@@ -12,34 +12,34 @@ bg:Show()
 
 local SetPoint = f.SetPoint
 local ClearAllPoints = f.ClearAllPoints
-ClearAllPoints(BuffFrame)
-SetPoint(BuffFrame, "TOPRIGHT", f, "TOPRIGHT")
-hooksecurefunc(BuffFrame, "SetPoint", function(frame)
-	ClearAllPoints(frame)
-	SetPoint(frame, "TOPRIGHT", f, "TOPRIGHT")
-end)
+--ClearAllPoints(BuffFrame)
+--SetPoint(BuffFrame, "TOPRIGHT", f, "TOPRIGHT")
+--hooksecurefunc(BuffFrame, "SetPoint", function(frame)
+--	ClearAllPoints(frame)
+--	SetPoint(frame, "TOPRIGHT", f, "TOPRIGHT")
+--end)
 
 local header = f:CreateFontString(nil, "OVERLAY", "TextStatusBarText")
-header:SetAllPoints(f)
+--header:SetAllPoints(f)
 --header:SetText("MyBuffs")
 header:Show()
 
-f:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", 0, 0)
+f:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
 f:SetWidth(600)
 f:SetHeight(40)
 f:Show()
-f:EnableMouse(true)
-f:RegisterForDrag("LeftButton")
-f:SetMovable(true)
-f:SetScript("OnDragStart", function(frame) frame:StartMoving() end)
-f:SetScript("OnDragStop", function(frame)
-	frame:StopMovingOrSizing()
-	local a, _, b, c, d = frame:GetPoint()
-	BasicBuffsOptions[1] = a
-	BasicBuffsOptions[2] = b
-	BasicBuffsOptions[3] = c
-	BasicBuffsOptions[4] = d
-end)
+--f:EnableMouse(true)
+--f:RegisterForDrag("LeftButton")
+--f:SetMovable(false)
+--f:SetScript("OnDragStart", function(frame) frame:StartMoving() end)
+--f:SetScript("OnDragStop", function(frame)
+--	frame:StopMovingOrSizing()
+--	local a, _, b, c, d = frame:GetPoint()
+--	BasicBuffsOptions[1] = a
+--	BasicBuffsOptions[2] = b
+--	BasicBuffsOptions[3] = c
+--	BasicBuffsOptions[4] = d
+--end)
 
 
 f:RegisterEvent("PLAYER_LOGIN")
