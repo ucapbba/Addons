@@ -1,67 +1,48 @@
 Config = {}
   print("|cFF33FF99HelloWorld|r:", "Config loaded")
 
-function Config:DisplaySquare()
+function Config:DisplayConfig()
+end
 
-local f = CreateFrame("Frame", "BasicBuffsFrame", UIParent)
+function Config:UpdateConfig()
+ name = 'helloworld'
+ InterfaceOptionsFrame_OpenToCategory(name)
+ local bcm = CreateFrame("Frame", "BCM", InterfaceOptionsFramePanelContainer)
+	bcm.name = name
+	InterfaceOptions_AddCategory(bcm)
+	local bcmTitle = bcm:CreateFontString(nil, "ARTWORK", "GameFontNormalHuge")
+	bcmTitle:SetPoint("CENTER", bcm, "TOP", 0, -30)
+	bcmTitle:SetText(name.." v2-bcc") --wowace magic, replaced with tag version
+	local bcmDesc = bcm:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
+	bcmDesc:SetPoint("CENTER")
+	bcmDesc:SetText(BCM.CORE)
+	bcmDesc:SetWidth(450)
+	bcmDesc:SetJustifyH("CENTER")
 
-local bg = f:CreateTexture()
-bg:SetAllPoints(f)
-bg:SetColorTexture(0, 0, 1, 1)
-bg:Show()
-
-local SetPoint = f.SetPoint
-local ClearAllPoints = f.ClearAllPoints
---ClearAllPoints(BuffFrame)
---SetPoint(BuffFrame, "TOPRIGHT", f, "TOPRIGHT")
---hooksecurefunc(BuffFrame, "SetPoint", function(frame)
---	ClearAllPoints(frame)
---	SetPoint(frame, "TOPRIGHT", f, "TOPRIGHT")
---end)
-
-local header = f:CreateFontString(nil, "OVERLAY", "TextStatusBarText")
---header:SetAllPoints(f)
---header:SetText("MyBuffs")
-header:Show()
-
-f:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
-f:SetWidth(600)
-f:SetHeight(40)
-f:Show()
---f:EnableMouse(true)
---f:RegisterForDrag("LeftButton")
---f:SetMovable(false)
---f:SetScript("OnDragStart", function(frame) frame:StartMoving() end)
---f:SetScript("OnDragStop", function(frame)
---	frame:StopMovingOrSizing()
---	local a, _, b, c, d = frame:GetPoint()
---	BasicBuffsOptions[1] = a
---	BasicBuffsOptions[2] = b
---	BasicBuffsOptions[3] = c
---	BasicBuffsOptions[4] = d
---end)
-
-
-f:RegisterEvent("PLAYER_LOGIN")
-f:SetScript("OnEvent", function(display)
-	if not BasicBuffsOptions then
-		BasicBuffsOptions = {"CENTER", "CENTER", 0, 0, false}
-	end
-
-	display:ClearAllPoints()
-	display:SetPoint(BasicBuffsOptions[1], UIParent, BasicBuffsOptions[2], BasicBuffsOptions[3], BasicBuffsOptions[4])
-
-	if BasicBuffsOptions[5] then
-		bg:Hide()
-		header:Hide()
-		display:EnableMouse(false)
-		display:SetMovable(false)
-	end
-
-	display:UnregisterEvent("PLAYER_LOGIN")
-	display:SetScript("OnEvent", nil)
-end)
-
-
-end  --end of display square
-
+	local panelDesc = bcm:CreateFontString("BCMPanelDesc", "ARTWORK", "GameFontNormalLarge")
+	panelDesc:SetWidth(500)
+	panelDesc:SetWordWrap(true)
+	local enableBtn = CreateFrame("CheckButton", "BCMEnableButton", bcm, "OptionsBaseCheckButtonTemplate")
+	enableBtn:SetScript("OnClick", function(frame)
+		BCM_Warning:Show()
+		if frame:GetChecked() then
+			PlaySound(856) -- SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON
+			bcmDB[frame:GetParent():GetName()] = nil
+		else
+			PlaySound(857) -- SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_OFF
+			bcmDB[frame:GetParent():GetName()] = true
+		end
+	end)
+local enableBtnText = enableBtn:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
+	enableBtnText:SetPoint("LEFT", enableBtn, "RIGHT")
+	enableBtnText:SetText(ENABLE)
+	local warn = bcm:CreateFontString("BCM_Warning", "ARTWORK", "GameFontNormal")
+	warn:SetJustifyH("CENTER")
+	warn:SetText(BCM.WARNING)
+	warn:Hide()
+	local optionsWarn = bcm:CreateFontString("BCM_OptionsWarn", "ARTWORK", "GameFontNormal")
+	optionsWarn:SetJustifyH("CENTER")
+	optionsWarn:SetText(BCM.OPTIONS)
+	optionsWarn:Hide()
+	BCM.info = {}	
+end

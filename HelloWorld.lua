@@ -2,14 +2,16 @@ Main = { }
   print("|cFF33FF99HelloWorld|r:", "Main loaded")
 
 function Main:Message()
-    message("Displaying a config square") 
+    message("Displaying a blue square square") 
 end
 
-SlashCmdList.HELLOWORLD = function()
+Config:UpdateConfig()
+	
+SlashCmdList.HELLOWORLD = function() 
   Main:Message()
-  Config:DisplaySquare()
+  GUI:DisplaySquare()
   print("|cFF33FF99HelloWorld|r:", "Message Displayed")
 end
-SLASH_HELLOWORLD1 = "/hw"
+SLASH_HELLOWORLD1  = "/hw"
 
 
